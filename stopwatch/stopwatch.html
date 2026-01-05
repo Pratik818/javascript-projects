@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .btn-div {
+            display: flex;
+            justify-content: center;
+            max-width: 280px;
+            gap: 10px;
+        }
+
+        .time-div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 280px;
+            margin-bottom: 1.5rem;
+            background: #212121;
+            color: rgba(255, 255, 255, 0.936);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-family: 'Arial', sans-serif;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .time-div span {
+            font-size: 32px;
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .btn-div button {
+            padding: 8px 18px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            outline: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            text-transform: uppercase;
+        }
+
+        .btn-div button:hover {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+
+        .main-div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border: 2px solid black;
+            padding: 30px;
+            width: fit-content;
+            margin: 100px auto;  
+            border-radius: 7px;
+            font-family: system-ui;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-div">
+        <h3>Stopwatch</h3>
+        <div class="time-div">
+            <span id="timespanTag">00:00:00:00</span>
+        </div>
+        <div class="btn-div">
+            <button style="background:orange;" id="reset" >Reset</button>
+            <button style="background:green;" id="start">Start</button>
+            <button style="background:red;" id="stop">Stop</button>
+        </div>
+    </div>
+
+
+    <script src="stopwatch.js" ></script>
+</body>
+</html>

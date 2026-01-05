@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Finder</title>
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            outline: none;
+            min-width: 180px;
+        }
+
+        button {
+            padding: 0.8rem 1.2rem;
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            min-width: 100px;
+        }
+
+        button:hover {
+            background-color: #ff5e3a;
+        }
+
+        .weather-container {
+            padding: 2rem;
+            display: none;
+        }
+
+        .weather-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .city-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .temperature {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .description {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            gap: 10px;
+        }
+
+        .detail {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            text-align: center;
+        }
+
+        .detail span {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .error {
+            color: #ff5e3a;
+            text-align: center;
+            padding: 1rem;
+            display: none;
+        }
+
+        .loader {
+            display: none;
+            width: 48px;
+            height: 48px;
+            border: 5px solid #FFF;
+            border-bottom-color: transparent;
+            border-radius: 50%;
+            animation: rotation 1s linear infinite;
+            margin: 2rem auto;
+        }
+
+        @keyframes rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .forecast {
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem 0;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .forecast-item {
+            min-width: 120px;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 1.8rem;
+        }
+
+        .search-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input {
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .temperature {
+            font-size: 2.5rem;
+        }
+
+        .details {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .detail {
+            padding: 0.5rem 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        body {
+            padding: 1rem;
+        }
+
+        .container {
+            width: 95%;
+            padding: 15px;
+        }
+
+        .search-container {
+            padding: 0.5rem;
+        }
+
+        input {
+            padding: 0.6rem;
+        }
+
+        button {
+            padding: 0.6rem;
+        }
+
+        .temperature {
+            font-size: 2rem;
+        }
+
+        .forecast {
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            width: 100%;
+        }
+
+        .forecast-item {
+            min-width: 100px;
+            padding: 0.8rem;
+        }
+    }
+
+     </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather API Finder</h1>
+            <p>Search for a city to get current weather conditions</p>
+        </header>
+        
+        <div class="search-container">
+            <input type="text" id="city-input" placeholder="Enter city name...">
+            <button id="search-btn">Search</button>
+        </div>
+        
+        <div id="error" class="error">City not found. Please try again.</div>
+        <div id="demo-message-container"></div>
+        <div id="loader" class="loader"></div>
+        
+        <div id="weather-container" class="weather-container">
+            <div class="weather-info">
+                <h2 id="city-name" class="city-name"></h2>
+                <p id="date" style="margin-bottom: 1rem;"></p>
+                <img id="weather-icon" src="" alt="Weather icon">
+                <div id="temperature" class="temperature"></div>
+                <div id="description" class="description"></div>
+                
+                <div class="details">
+                    <div class="detail">
+                        <i class="fas fa-temperature-high"></i>
+                        <span>Feels Like</span>
+                        <span id="feels-like"></span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-tint"></i>
+                        <span>Humidity</span>
+                        <span id="humidity"></span>
+                    </div>
+                    <div class="detail">
+                        <i class="fas fa-wind"></i>
+                        <span>Wind</span>
+                        <span id="wind"></span>
+                    </div>
+                </div>
+                
+                <div id="forecast" class="forecast">
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script  src="weather.js" ></script>
+</body>
+</html>

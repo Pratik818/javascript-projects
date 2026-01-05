@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Projects Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #212121;
+            --secondary-color: #4169E1;
+            --accent-color: #FF5722;
+            --text-color: #FFFFFF;
+            --card-bg: #2d2d2d;
+            --hover-color: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'system-ui', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.3rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .intro h2 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            background-color: var(--hover-color);
+        }
+
+        .card-img {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            font-weight: 700;
+        }
+
+        .btnx {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: white;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            font-weight: 700;
+        }
+
+
+        .btn:hover {
+            background-color: #E64A19;
+        }
+
+        .live-demo {
+            margin-top: 1.5rem;
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+        }
+
+        .demo-container {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            min-height: 100px;
+            position: relative;
+        }
+
+        .toggle-demo {
+            display: flex;
+            justify-content: space-between;
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #toggle-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #toggle-content {
+            display: none;
+        }
+
+
+        /* .data-display {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-top: 1rem;
+            font-family: monospace;
+            word-break: break-all;
+        } */
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #1a1a1a;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>JavaScript Projects Portfolio </h1>
+        <svg width="35px" height="35px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M8.01005 0.858582L6.01005 14.8586L7.98995 15.1414L9.98995 1.14142L8.01005 0.858582Z"
+                fill="#ffffff" />
+            <path d="M12.5 11.5L11.0858 10.0858L13.1716 8L11.0858 5.91422L12.5 4.5L16 8L12.5 11.5Z" fill="#ffffff" />
+            <path d="M2.82843 8L4.91421 10.0858L3.5 11.5L0 8L3.5 4.5L4.91421 5.91422L2.82843 8Z" fill="#ffffff" />
+        </svg>
+    </header>
+
+    <div class="container">
+        <section class="intro">
+            <h2>My JavaScript Projects
+            </h2>
+            <p>Welcome to my portfolio! Here are some of my JavaScript projects that demonstrate DOM manipulation, data
+                handling, and other JavaScript concepts.</p>
+        </section>
+
+        <section class="projects-grid">
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./apiFetch/newsapp.png" alt="DOM Manipulation Project">
+                </div>
+                <div class="card-content">
+                    <h3>NewsWebApp : Experience the latest news at your fingertips</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">DOM</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">External News API</span>
+                    </div>
+                    <p>This project is a simple news app built with HTML, CSS, JavaScript, and a third-party news API. I
+                        created this website to learn JavaScript, specifically focusing on fetching data from an
+                        external API, handling errors, and dynamically displaying information on a webpage. The project
+                        helped me gain hands-on experience with modern JavaScript practices and client-server
+                        interactions.</p>
+                    <div class="live-demo">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="https://news-app-dev.vercel.app/" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/news_app" class="btn">View Code</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./weatherAPI/weather.png" alt="DOM Manipulation Project">
+                </div>
+                <div class="card-content">
+                    <h3>WeatherNow: Real-Time Weather Finder</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">DOM</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">External Weather API</span>
+                    </div>
+                    <p>WeatherNow is a sleek, responsive web application that provides real-time weather information for
+                        any city worldwide. Features include current conditions with temperature, humidity, and wind
+                        data, plus a 5-day forecast. Built with HTML, CSS, and JavaScript, this app demonstrates DOM
+                        manipulation and API integration skills through an intuitive, modern interface</p>
+                    <div class="live-demo">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./weatherAPI/weather.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/weatherAPI"
+                                class="btn">View Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./apiFetch/fetchAPi.png" alt="Toggle Button Project">
+                </div>
+                <div class="card-content">
+                    <h3>Dynamic User Cards with API & Theme Switch</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Event Listeners</span>
+                        <span class="tag">DOM</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">Api CAll</span>
+                    </div>
+                    <p>An interactive web app that fetches
+                        random user profiles from the randomuser.me API based on the desired number of users input,
+                        displays them in stylish cards, tracks and displays API response time for performance insights,
+                        and features a smooth dark/light mode toggle for enhanced user experience</p>
+                    <div class="live-demo">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./apiFetch/apiFetch.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/apiFetch" class="btn"
+                                target="_blank">View Code</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./starter/todo.png" alt="Todo Using Local Storage">
+                </div>
+                <div class="card-content">
+                    <h3>Dynamic Todo List with Theme Toggle and Local Storage</h3>
+                    <div>
+                        <span class="tag">HTML </span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JS</span>
+                        <span class="tag">DOM</span>
+                        <span class="tag">Web Local Storage</span>
+
+
+                    </div>
+                    <p>A dynamic to-do list web app that lets users easily add, update, and delete tasks with real-time
+                        updates. It features a dark/light mode switch for a better visual experience and saves tasks
+                        using local storage to ensure data persistence. A simple date toggle option adds a personalized
+                        touch to task management.</p>
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./starter/todo.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/starter" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./stopwatch/stopwatch.png" alt="Style Toggler Project">
+                </div>
+                <div class="card-content">
+                    <h3>StopWatch</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>I created this web app to track how long I could hold my breath. Each day, I used it to measure
+                        and record my progress, making it a convenient tool that I could access anytime, anywhere
+
+                    </p>
+
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./stopwatch/stopwatch.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/stopwatch" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./crausal/crausal.png" alt="Style Toggler Project">
+                </div>
+                <div class="card-content">
+                    <h3>Image Carousel with AutoSlideshow</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>A lightweight and responsive image carousel that cycles through images with smooth transitions.
+                        Users can manually navigate using Next and Previous buttons, or let the slideshow automatically
+                        change images every 2 seconds. The carousel ensures
+                        a seamless experience with fade-in and fade-out animations for better visual appeal.</p>
+
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./crausal/crausal.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/crausal" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./guesser/guess.png" alt="Style Toggler Project">
+                </div>
+                <div class="card-content">
+                    <h3>Guess the Number - Fun Number Game 🎯</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>A fun and interactive number guessing game where the player has 10 attempts to guess a randomly
+                        generated number between 1 and 100. The game provides hints and feedback on each attempt, and if
+                        the player fails, they can start a new game with the Play Again button. The game features an
+                        intuitive UI,
+                        error handling for invalid inputs, and a hint on the last attempt to make it more engaging.</p>
+
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./guesser/gues.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/guesser" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./counter/count.png" alt="XOR Operation Project">
+                </div>
+                <div class="card-content">
+                    <h3>Advanced Counter App with Custom Steps & Dark Mode</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>This interactive counter app lets you increase (Arrow Up) or decrease (Arrow Down) the counter by
+                        a custom step value set using a range slider. Press "r" to reset instantly. It also features a
+                        dark mode toggle, which along with the counter value, is stored in local storage for
+                        persistence. </p>
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./counter/count.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/counter" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./datecolor/datecolor.png" alt="Style Toggler Project">
+                </div>
+                <div class="card-content">
+                    <h3>Dynamic Clock with Live Background Color Updates 🎨⏰</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>This interactive digital clock not only updates every second but also changes the background
+                        color dynamically, creating a visually engaging experience. The user can start and stop both the
+                        clock and background transitions with a single button click. Additionally, the current
+                        background color
+                        is displayed in real-time, making it even more fun and interactive.</p>
+
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./datecolor/datecolor.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/datecolor" class="btn"
+                                target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="project-card">
+                <div class="card-img">
+                    <img src="./colorchanger/colorchanger.png" alt="XOR Operation Project">
+                </div>
+                <div class="card-content">
+                    <h3>Background Color Changer</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">DOM</span>
+                    </div>
+                    <p>To Change the backgroundcolor click on any 4 of these button's . when user clicks on the button
+                        the function uses getComputedStyle() method
+                        which takes the backGround Color of clicked button and based on that changes the background
+                        color </p>
+                    <div class="live-demo" style="text-align: bottom;">
+                        <h4>Live Demo and Code:</h4>
+                        <div class="demo-container">
+                            <a href="./colorchanger/color.html" class="btn" target="_blank">View Live</a>
+                            <a href="https://github.com/Mahto-rajiv/javascript-projects/tree/main/colorchanger"
+                                class="btn" target="_blank">View Code</a>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Add more project cards as needed -->
+            <!-- <div class="project-card">
+                <div class="card-img">
+                    <img src="/api/placeholder/400/320" alt="Future Project">
+                </div>
+                <div class="card-content">
+                    <h3>Coming Soon</h3>
+                    <div>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Future</span>
+                    </div>
+                    <p>More awesome JavaScript projects in the works! Check back soon for updates.</p>
+                    <a href="#" class="btn">Stay Tuned</a>
+                </div>
+            </div> -->
+        </section>
+    </div>
+
+    <footer>
+        <p>Contact Links</p>
+        <div class="social-links">
+            <a href="https://github.com/Mahto-rajiv/" class="btnx" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/rajiv-mahto-b928bb253/" target="_blank" class="btnx">LinkedIn</a>
+        </div>
+    </footer>
+</body>
+
+</html>

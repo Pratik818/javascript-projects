@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        *{
+            font-family: 'system-ui';
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #212121;
+            font-family: Arial, sans-serif;
+        }
+
+        #imageContainer {
+            width: 350px;
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .crausal_image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            /* font-weight: bold; */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            background: white;
+            color: #000;
+        }
+
+        .bgbutton {
+            padding: 10px 20px;
+            font-size: 16px;
+            /* font-weight: bold; */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            background: black;
+            color: white;
+        }
+
+
+        button:hover {
+            background: #e64a19;
+            transform: scale(1.1);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <button id="bg" class="button">Dark Mode (Click ME)</button> -->
+    <div>
+        <div id="imageContainer"></div>
+        <div class="controls">
+            <button id="previous" class="button">Previous</button>
+            <button id="autoslide" class="button">AutoSlide OFF</button>
+            <button id="next" class="button">Next</button>
+        </div>
+    </div>
+
+    <script src="crausal.js"></script>
+</body>
+</html>

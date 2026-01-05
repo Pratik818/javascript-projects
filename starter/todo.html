@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+    <style>
+        *{
+            font-family: system-ui;
+             
+        }
+        .bx{
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .delbtn{
+
+            border-radius: 3px;
+            background-color: #000;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            min-width: 88px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 6px;
+
+        }
+        .revdelbtn{
+
+            border-radius: 3px;
+            background-color: #fff;
+            color: #000;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            min-width: 88px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 6px;
+
+
+
+
+        }
+        .inputClass{
+            padding: 9px;border-radius: 2px;outline: none;border:none;border:1.2px solid black;
+        }
+        .date-display {
+            font-size: 14px;
+            font-weight: normal;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .bg-black {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        #heading{
+            font-size: 24px;
+            margin: 0;
+        }
+        #newItem {
+            flex: 1;
+            padding: 10px 12px;
+            font-size: 16px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        #itemcount{
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        #msg {
+            transition: opacity 0.3s;
+            opacity: 0; 
+            font-size: 16px;
+            color: #4caf50;
+            /* visibility: hidden; */
+        }
+        #regid{
+          font-weight: bold;
+        }
+
+
+        .div3 {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .newDiv {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 800px;
+            background: #f8f9fa;
+            padding: 13px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .newDiv:hover {
+            background: #eef1f6;
+            box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+
+        .newDiv li {
+            /* width: 100%; */
+            flex-grow: 1;
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            list-style: none;
+            margin-right: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            transform :"translateY(-10px)";
+        }
+
+        .btnContainer {
+            display: flex;
+            justify-content: space-between;
+            width: 190px;
+        }
+        .bottomhr {
+        border: none;
+        height: 1px;
+        background-color: #e0e0e0;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 600px) {
+            .input-group {
+                flex-direction: column;
+            }
+            .button-group {
+                flex-direction: column;
+            }
+            button {
+                width: 100%;
+            }
+            .alex{
+                flex-direction: column;
+            }
+            .newDiv{
+               flex-direction: column;
+            }
+            .btnContainer{
+                flex-direction: column;
+            }
+        }
+
+
+
+    </style>
+</head>
+<body id="x" class="bx">
+    <div class="bg-black">
+        <div style="display: flex; justify-content: space-between;" >
+         <div style="display: flex;gap: 2.7rem;width: 100%;"> 
+            <h1 id="heading" >Dynamic Todo List with Theme Toggle and Local Storage </h1>
+            <h1 id="msg"  style="text-align: right;">ccccccccccccccc</h1>
+         </div>   
+
+        </div>
+        <!-- <p id="regid" class="date-display" >Click on the Show Button and see your Date and Time</p> -->
+         <p id="regid" class="date-time" >CCCCC</p> 
+         
+
+
+
+    </div>
+        <button id="datepreview" class="delbtn" >Show Date and Time</button>
+        <button id="color" class="delbtn" >Dark Mode</button>
+
+    <!-- <button id="reg" class="delbtn" >Show Date</button>
+    <button id="color" class="delbtn" >ChangeColor</button> -->
+
+    <br>
+    <br>
+    <div class="div3">
+        <input type="text" id="newItem" style="padding: 9px;border-radius: 2px;outline: none;border:none;border:1.2px solid black;">
+        <div class="alex">
+            <button id="additem" class="delbtn">AddItem</button>
+            <button id="deleteitem" class="delbtn">Delete TopItem</button>
+        </div>
+
+
+    </div>
+    <!-- <input type="text" id="newItem" style="padding: 9px;border-radius: 2px;outline: none;border:none;border:1.2px solid black;">
+    <button id="additem" class="delbtn">AddItem</button>
+    <button id="deleteitem" class="delbtn">Delete TopItem</button> -->
+    
+    <h1 style="text-align: center;align-items: center;">List of Added Items</h1>
+    <ul id="itemlist">
+    </ul>
+    <hr class="bottomhr">
+
+    <p id="itemcount" ></p>
+
+
+
+<script src="todo.js" ></script>
+</body>
+</html>                     

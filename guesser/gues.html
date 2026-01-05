@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess Number</title>
+    <style>
+
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        input {
+            padding: 12px;
+            border-radius: 6px;
+            width: 100%;
+            max-width: 300px;
+            border: 2px solid #ff9800;
+            text-align: center;
+            font-size: 18px;
+            outline: none;
+            background: #fff;
+            color: #333;
+        }
+
+        button {
+            padding: 12px 18px;
+            border-radius: 6px;
+            border: none;
+            background-color: #ff9800;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background-color: #e68900;
+            transform: scale(1.05);
+        }
+
+        #guesMsg {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+        }
+
+        #lastHint {
+            display: block;
+            margin-top: 10px;
+            font-size: 16px;
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    input {
+        font-size: 16px;
+        width: 90%;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 14px;
+    }
+}
+
+
+    </style>
+
+</head>
+<body>
+    <h1>Guess the Number</h1>
+    
+    <form id="guesform">
+        <input type="text"  placeholder="Enter Your guessed number ...">
+        <button type="submit" id="guessbtn"> check </button>
+    </form>
+     <p id="guesMsg" ></p>
+
+     <span id="lastHint" ></span>
+
+<script src="gues.js" ></script>
+</body>
+</html>

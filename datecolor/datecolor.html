@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #212121;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            transition: background 1s ease-in-out;
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        #stop {
+            background-color: rgb(255, 94, 0);
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        #stop:hover {
+            background-color: rgb(220, 80, 0);
+            transform: scale(1.05);
+        }
+
+        #time {
+            font-size: 60px;
+            font-weight: bold;
+            margin-top: 20px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.2);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #time {
+                font-size: 40px;
+            }
+
+            #stop {
+                font-size: 14px;
+                padding: 10px 18px;
+            }
+        }
+
+    </style>
+</head>
+<body style="background-color: #212121;color: white;font-family: system-ui;">
+    <h1>Hey Rajiv this side</h1>
+    <button id="stop">Start</button>
+    <span id="time" ></span>
+    <p id="currentcolor" style="font-weight: bold;" ></p>
+</body>
+<script src="datecolor.js" ></script>
+</html>
